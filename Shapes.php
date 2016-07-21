@@ -23,11 +23,11 @@
        $obj->drawTriangle2(20);
        $obj->drawTriangle3(20);
        $obj->drawTriangle4(20);
-       $obj->drawEquilateralTriangle(20);
-       $obj->drawRectangle(10, 20);
+       $obj->drawEquilateralTriangle(30);
+       $obj->drawRectangle(20, 35);
        $obj->drawRhombus(20);
-       $obj->drawHexagon(6);
-       $obj->drawStar(14);
+       $obj->drawHexagon(8);
+       $obj->drawStar(16);
        $obj->drawHut(60);
        $obj->drawCircle(50);
        $obj->drawIncentricTriangle(50);
@@ -229,10 +229,16 @@
 
            public function drawStar($j_max)
            {
+               // TODO::More generalised logic can be written to handle max_base greater than 20
                $min_base    = 10;
+               $max_base    = 20;
 
                if($j_max < $min_base){
                    $j_max   = $min_base;
+               }
+
+               if($j_max > $max_base){
+                   $j_max   = $max_base;
                }
 
                if($j_max % 2 != 0){
