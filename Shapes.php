@@ -5,33 +5,44 @@
         body{
             line-height: 5px;
         }
+
+        div{
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: 20px;
+            border-top: dashed 2px black;
+            padding: 20px;
+        }
     </style>
  </head>
 <body>
    <?php
 
        $obj	= new Shapes();
-       $obj->drawTriangle1(10, 0);
-       $obj->drawTriangle2(10, 0);
-       $obj->drawTriangle3(10, 0);
-       $obj->drawTriangle4(10, 0);
-       $obj->drawEquilateralTriangle(10, 0);
-       $obj->drawRectangle(0, 0, 10, 20);
-       $obj->drawRhombus(20, 0);
-       $obj->drawHexagon(6, 0);
-       $obj->drawStar(14, 10, 3);
+       $obj->drawTriangle1(20);
+       $obj->drawTriangle2(20);
+       $obj->drawTriangle3(20);
+       $obj->drawTriangle4(20);
+       $obj->drawEquilateralTriangle(20);
+       $obj->drawRectangle(10, 20);
+       $obj->drawRhombus(20);
+       $obj->drawHexagon(6);
+       $obj->drawStar(14);
        $obj->drawHut(60);
        $obj->drawCircle(50);
        $obj->drawIncentricTriangle(50);
        $obj->drawExponentialGraph(2);
        $obj->drawNegativeExponentialGraph(2);
-       /*$obj->drawSineWave();*/
+       $obj->drawSineWave(50, 100);
 
        class Shapes
        {
-           public function drawTriangle1($length, $start = 0)
+           public function drawTriangle1($length)
            {
+               $start = 0;
+
                echo "<pre>";
+               echo "<div>Triangle : </div>";
                for($x = $start; $x < $length; $x++){
                    for($y = $start; $y < $length; $y++){
                        if($y == $start || $x == $length-1 || $x == $y){
@@ -45,9 +56,12 @@
                echo "</pre>";
            }
 
-           public function drawTriangle2($length, $start = 0)
+           public function drawTriangle2($length)
            {
+               $start = 0;
+
                echo "<pre>";
+               echo "<div>Triangle : </div>";
                for($x = $start; $x < $length; $x++){
                    for($y = $length - 1; $y >= $start; $y--){
                        if($x == $length - 1 || $y == $start || $x == $y){
@@ -61,9 +75,12 @@
                echo "</pre>";
            }
 
-           public function drawTriangle3($length, $start = 0)
+           public function drawTriangle3($length)
            {
+               $start = 0;
+
                echo "<pre>";
+               echo "<div>Triangle : </div>";
                for($x = $length - 1; $x >= $start; $x--){
                    for($y = $start; $y < $length; $y++){
                        if($x == $length - 1 || $y == $start || $x == $y){
@@ -77,9 +94,12 @@
                echo "</pre>";
            }
 
-           public function drawTriangle4($length, $start = 0)
+           public function drawTriangle4($length)
            {
+               $start = 0;
+
                echo "<pre>";
+               echo "<div>Triangle : </div>";
                for($x = $start; $x < $length; $x++){
                    for($y = $start; $y < $length; $y++){
                        if($x == $start || $y == $length-1 || $x == $y){
@@ -93,10 +113,14 @@
                echo "</pre>";
            }
 
-           public function drawEquilateralTriangle($length, $start = 0)
+           public function drawEquilateralTriangle($length)
            {
+                $start = 0;
+
                 echo "<pre>";
-                if($length % 2 != 0){
+               echo "<div>Equilateral Triangle : </div>";
+
+               if($length % 2 != 0){
                     $length++;
                 }
 
@@ -115,9 +139,14 @@
                 echo "</pre>";
            }
 
-           public function drawRectangle($x_start, $y_start, $dim1, $dim2)
+           public function drawRectangle($dim1, $dim2)
            {
+               $x_start = 0;
+               $y_start = 0;
+
                echo "<pre>";
+               echo "<div>Rectangle : </div>";
+
                for($i = $x_start; $i < $dim1; $i++){
                    for($j = $y_start; $j < $dim2; $j++){
                        if($i == $x_start || $i == $dim1 - 1 || $j == $y_start || $j == $dim2 - 1){
@@ -131,9 +160,13 @@
                echo "</pre>";
            }
 
-           public static function drawRhombus($length, $start = 0)
+           public static function drawRhombus($length)
            {
+               $start = 0;
+
                echo "<pre>";
+               echo "<div>Rhombus : </div>";
+
                if($length % 2 != 0){
                    $length++;
                }
@@ -156,9 +189,13 @@
                echo "</pre>";
            }
 
-           public function drawHexagon($length, $start = 0)
+           public function drawHexagon($length)
            {
+               $start = 0;
+
                echo "<pre>";
+               echo "<div>Hexagon : </div>";
+
                $x_limit = ($length * 2) + ($length - 2);
                $y_limit = ($length * 2) - 1;
 
@@ -190,9 +227,24 @@
                echo "</pre>";
            }
 
-           public function drawStar($j_max, $i_max, $intersection_length)
+           public function drawStar($j_max)
            {
+               $min_base    = 10;
+
+               if($j_max < $min_base){
+                   $j_max   = $min_base;
+               }
+
+               if($j_max % 2 != 0){
+                   $j_max   = $j_max + ($j_max % 2);
+               }
+
+               $i_max               = $j_max - 4;
+               $intersection_length = 1 + (($j_max - $min_base) / 2);
+
                echo "<pre>";
+               echo "<div>Star : </div>";
+
                $k = -1;
                for($i = 0; $i <= $i_max; $i++){
                    if($i >= $intersection_length){
@@ -232,8 +284,10 @@
 
            public function drawHut($length)
            {
-                echo "<pre>";
-                if($length < 40){
+               echo "<pre>";
+               echo "<div>Hut : </div>";
+
+               if($length < 40){
                     $length = 50;
                 }
                 $mod    = $length % 20;
@@ -309,6 +363,8 @@
            public function drawCircle($r)
            {
                echo "<pre>";
+               echo "<div>Circle : </div>";
+
                $negative_point = $r - 2*$r;
                $x              = $negative_point;
                $y              = $r;
@@ -334,6 +390,8 @@
            public function drawIncentricTriangle($r)
            {
                echo "<pre>";
+               echo "<div>Incentric Triangle : </div>";
+
                $negative_point = $r - 2*$r;
                $x              = $negative_point;
 
@@ -377,6 +435,8 @@
            public function drawExponentialGraph($a)
            {
                echo "<pre>";
+               echo "<div>a<sup>x</sup> : </div>";
+
                // y = a to power x
                for($y = 50; $y >= -50 ; $y = $y - 0.5){
                    for($x = -50; $x <= 50 ; $x = $x + 0.5){
@@ -395,6 +455,8 @@
            public function drawNegativeExponentialGraph($a)
            {
                echo "<pre>";
+               echo "<div>a<sup>-x</sup> : </div>";
+
                // y = a to power x
                for($y = 50; $y >= -50 ; $y = $y - 0.5){
                    for($x = -50; $x <= 50 ; $x = $x + 0.5){
@@ -410,22 +472,41 @@
                echo "</pre>";
            }
 
-           public function drawSineWave()
+           public function drawSineWave($r_j, $r_i)
            {
-               for($y = 1.0; $y <= -1.0; $y= $y - 0.5){
-                   for ($x = 0; $x <= 360; $x++){
-                   echo(sin($x));
-                       $sine_val = round(sin(deg2rad($x)), 1);
+               echo "<pre>";
+               echo "<div>Sine Curve : </div>";
 
-                       echo $sine_val;
-                       if($y == $sine_val){
-                           echo ".";
-                       } else{
+               $i_min   = $r_i - 2 * $r_i;
+               $j_min   = $r_j - 2 * $r_j;
+
+               $ri_square    = $r_i * $r_i;
+               $rj_square    = $r_j * $r_j;
+
+               $next      = false;
+               for($i = $i_min; $i <= $r_i; $i++){
+                   $next      = false;
+                   for($j = $j_min; $j <= $r_j; $j++){
+
+                       // using ellipse equation
+                       $i_square   = $i * $i;
+                       $j_square   = $j * $j;
+
+                       $val        = ($i_square / $ri_square) + ($j_square / $rj_square);
+                       if(((!$next && $i <= 0) || ($i >= 0 && $next)) && $val == 1){
+                           echo "*";
+                       } else {
                            echo " ";
+                       }
+
+                       if($j == $r_j && !$next){
+                           $next = true;
+                           $j    = $j_min;
                        }
                    }
                    echo "<br/>";
                }
+               echo "</pre>";
            }
        }
    ?>
